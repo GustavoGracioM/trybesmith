@@ -1,9 +1,7 @@
 interface Product {
   id?: number,
-  username: string,
-  password: string,
-  classe: string,
-  level: number,
+  name: string, 
+  amount: string,
 }
 
 export default Product;

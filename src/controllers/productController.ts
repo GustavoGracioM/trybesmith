@@ -4,6 +4,12 @@ import ProductService from '../services/productService';
 class ProductController {
   constructor(private productService = new ProductService()) { }
 
+  public create = async (req: Request, res: Response) => {
+    const product = req.body;
+    const result = await this.productService.create(product);
+    res.status(201).json(result);
+  };
+
   public getAll = async (_req: Request, res: Response) => {
     const products = await this.productService.getAll();
     res.status(200).json(products);
