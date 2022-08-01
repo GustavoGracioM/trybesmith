@@ -13,7 +13,7 @@ export default class UserService {
   public create = async (user: User): Promise<string> => {
     const result = await this.model.create(user);
     const secret = process.env.SECRET || '12345';
-    const token = jwt.sign({ data: result }, secret); 
+    const token = jwt.sign({ data: { username: result.username, id: result.id } }, secret); 
     return token;
   };
 }

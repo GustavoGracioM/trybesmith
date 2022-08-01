@@ -14,12 +14,10 @@ export default class OrderService {
     const orders = await this.model.getAll();
     const productModel = new ProductModel(connection);
     const products = await productModel.getAll();
-    const ordersProducts = orders.map((op) => ({ 
-      ...op,
-      productsIds: products.map((p) => (p.orderId === op.id ? p.id : false)) }));
+    const ordersProducts = orders.map((op) => (
+      { ...op, productsIds: products.map((p) => (p.orderId === op.id ? p.id : false)) }));
     const result = ordersProducts.map((op) => (
-      { ...op, productsIds: op.productsIds.filter((rr) => rr !== false) }
-    ));
+      { ...op, productsIds: op.productsIds.filter((rr) => rr !== false) }));
     return result as Order[];
   };
 }
